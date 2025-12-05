@@ -1,0 +1,32 @@
+- unique_id: mock_shade_family_room
+  set_cover_position:
+  - data:
+      value: '{{ position }}'
+    target:
+      entity_id:
+      - input_number.family_room_shade_position
+    action: input_number.set_value
+  open_cover:
+  - data:
+      value: 100
+    target:
+      entity_id:
+      - input_number.family_room_shade_position
+    action: input_number.set_value
+  close_cover:
+  - data:
+      value: 0
+    target:
+      entity_id:
+      - input_number.family_room_shade_position
+    action: input_number.set_value
+  stop_cover:
+  - data:
+      value: '{{ states(''input_number.family_room_shade_position'') }}'
+    target:
+      entity_id:
+      - input_number.family_room_shade_position
+    action: input_number.set_value
+  default_entity_id: cover.mock_shade_family_room
+  name: Family Room Shade
+  position: '{{ states(''input_number.family_room_shade_position'') | int }}'

@@ -1,0 +1,48 @@
+# render times in hh:mm am/pm
+- sensor:
+  - name: "Sunset"
+    unique_id: sun.sunset
+    state: >
+      {{ state_attr('sun.sun', 'next_setting')
+         | as_datetime
+         | as_local
+         | as_timestamp
+         | timestamp_custom('%I:%M %p')         
+      }}
+
+# calculate and display for forecast low temperature
+  - name: "Weather Forecast Today's Low"
+    unique_id: weather_forecast_todays_low
+    unit_of_measurement: "°F"
+    #state: "{{ daily_forecast['weather.home'].forecast[0].templow }}"
+    #value_template: >
+    state: >
+      {% set forecast = state_attr('weather.openweathermap', 'forecast') %}
+      {% if forecast %}
+        {% set today = now().date() %}
+        {% for f in forecast %}
+          {% if f.datetime.date() == today %}
+            {{ f.templow }}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        unavailable
+      {% endif %}
+        
+  - name: "Weather Forecast Tomorrow's Low"
+    unique_id: weather_forecast_tomorrows_low
+    unit_of_measurement: "°F"
+    #state: "{{ daily_forecast['weather.home'].forecast[1].templow }}"
+    #value_template: >
+    state: >
+      {% set forecast = state_attr('weather.openweathermap', 'forecast') %}
+      {% if forecast %}
+        {% set tomorrow = (now() + timedelta(days=1)).date() %}
+        {% for f in forecast %}
+          {% if f.datetime.date() == tomorrow %}
+            {{ f.templow }}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        unavailable
+      {% endif %}

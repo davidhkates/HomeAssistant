@@ -1,0 +1,3 @@
+# Include various entities defined as templates
+- sensor: !include sensors.yaml
+- cover: !include covers.yaml

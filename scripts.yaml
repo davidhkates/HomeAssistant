@@ -1,0 +1,53 @@
+select_channel_family_room:
+  sequence:
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: 'am start -n com.amazon.firetv.youtube.tv/dev.cobalt.app.MainActivity        '
+    action: androidtv.adb_command
+    enabled: false
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: input keyevent 4
+    action: androidtv.adb_command
+  - delay: '0.5'
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: input keyevent 22; input keyevent 22
+    action: androidtv.adb_command
+    enabled: false
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: input keyevent 22
+    action: androidtv.adb_command
+  - delay: '0.1'
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: input keyevent 22
+    action: androidtv.adb_command
+    enabled: false
+  - delay: '0.1'
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: input keyevent 22
+    action: androidtv.adb_command
+    enabled: false
+  - delay: '0.1'
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: 'input text "{{ states(''input_select.family_room_tv_channel'') }}"
+
+        '
+    action: androidtv.adb_command
+  - delay: '1'
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: ENTER
+    action: androidtv.adb_command
+    enabled: false
+  - delay: '1'
+  - data:
+      entity_id: media_player.family_room_fire_tv
+      command: ENTER
+    action: androidtv.adb_command
+    enabled: false
+  mode: single

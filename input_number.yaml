@@ -1,0 +1,11 @@
+#input_number:
+family_room_shade_position:
+  name: Family Room Shade Position
+  min: 0
+  max: 100
+  step: 1
+kitchen_shade_position:
+  name: Kitchen Shade Position
+  min: 0
+  max: 100
+  step: 1

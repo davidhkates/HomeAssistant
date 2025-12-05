@@ -1,0 +1,16 @@
+# format status and time for charging vehicles
+- sensor:
+  - name: "Model 3 Charging (Display)"
+    unique_id: tesla_model_3_charging_display
+    state: >
+      {% set s = states('sensor.model_3_charging') %}
+      {{ s if s not in ['unknown', 'unavailable', 'None', ''] else 'hide_me' }}
+  - name: "Model 3 Charging Complete"
+    unique_id: tesla_model_3_charging_complete
+    state: >
+      {{ states('sensor.model_3_time_to_full_charge')
+         | as_datetime
+         | as_local
+         | as_timestamp
+         | timestamp_custom('%I:%M %p')         
+      }}

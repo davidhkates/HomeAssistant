@@ -1,0 +1,52 @@
+# Add sensors to query SteVe database for wallbox status information
+
+# Tesla wallbox charger (WB01) charging status
+- name: Tesla Charger Status
+  unique_id: steve_tesla_status
+  db_url: mysql://steve:ben94syd96@192.168.4.152/stevedb
+  query: |
+    SELECT status
+    FROM connector_status
+    INNER JOIN connector
+      ON connector_status.connector_pk = connector.connector_pk
+    WHERE connector.charge_box_id='WB01' AND connector.connector_id=1
+    ORDER BY status_timestamp
+    LIMIT 1;
+  column: status
+  #unit_of_measurement: "entities"
+  #state_class: measurement
+
+# Tesla wallbox charger (WB01) charging errors
+- name: Tesla Charger Error
+  unique_id: steve_tesla_error
+  db_url: mysql://steve:ben94syd96@192.168.4.152/stevedb
+  query: |
+    SELECT
+      CASE error_code
+        WHEN 'NoError' THEN 'OK'
+        WHEN 'ConnectorLockFailure' THEN 'Connector Lock Failure'
+        WHEN 'EVCommunicationError' THEN 'EV Communication Error'
+        WHEN 'GroundFailure' THEN 'Ground Failure'
+        WHEN 'HighTemperature' THEN 'High Temperature'
+        WHEN 'InternalError' THEN 'Internal Error'
+        WHEN 'LocalListConflict' THEN 'Local Authorization List Conflict'
+        WHEN 'OtherError' THEN 'Other / Unknown Error'
+        WHEN 'OverCurrentFailure' THEN 'Overcurrent Failure'
+        WHEN 'PowerMeterFailure' THEN 'Power Meter Failure'
+        WHEN 'PowerSwitchFailure' THEN 'Power Switch Failure'
+        WHEN 'ReaderFailure' THEN 'RFID Reader Failure'
+        WHEN 'ResetFailure' THEN 'Reset Failure'
+        WHEN 'UnderVoltage' THEN 'Undervoltage'
+        WHEN 'OverVoltage' THEN 'Overvoltage'
+        WHEN 'WeakSignal' THEN 'Weak Wireless Signal'
+        ELSE error_code
+      END AS error_code      
+    FROM connector_status
+    INNER JOIN connector
+      ON connector_status.connector_pk = connector.connector_pk
+    WHERE connector.charge_box_id='WB01' AND connector.connector_id=1
+    ORDER BY status_timestamp
+    LIMIT 1;
+  column: error_code
+  #unit_of_measurement: "entities"
+  #state_class: measurement

@@ -1,0 +1,80 @@
+- id: '1763422513906'
+  alias: Family room shades close
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - cover.mock_shade_family_room
+    to:
+    - closed
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: scene.powerview_hub_family_room_close
+  mode: single
+- id: '1763422572511'
+  alias: Family room shades open
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - cover.mock_shade_family_room
+    to:
+    - open
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: scene.powerview_hub_family_room_open
+  mode: single
+- id: '1763424478812'
+  alias: Kitchen shades close
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - cover.mock_shade_kitchen
+    to:
+    - closed
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: scene.powerview_hub_kitchen_close
+  mode: single
+- id: '1763424536260'
+  alias: Kitchen shades open
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - cover.mock_shade_kitchen
+    to:
+    - open
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: scene.powerview_hub_kitchen_open
+  mode: single
+- id: '1763903166691'
+  alias: Family room channel change
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_select.family_room_tv_channel
+  conditions: []
+  actions:
+  - action: script.select_channel_family_room
+    metadata: {}
+    data: {}

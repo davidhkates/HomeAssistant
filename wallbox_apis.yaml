@@ -1,0 +1,15 @@
+steve_start_charging:
+  url: "http://192.168.4.152:8081/steve/api/v1/remote/{{ 'WB01' }}/start"
+  method: POST
+  payload: "connectorId={{ connector_id }}&idTag={{ id_tag }}"
+  content_type: "application/x-www-form-urlencoded"
+  username: "homeassistant"
+  password: "ben94syd96"
+
+steve_stop_charging:
+  url: "http://192.168.4.152:8081/steve/api/v1/remote/{{ 'WB01' }}/stop"
+  method: POST
+  payload: "transactionId={{ transaction_id }}"
+  content_type: "application/x-www-form-urlencoded"
+  username: "homeassistant"
+  password: "ben94syd96"
