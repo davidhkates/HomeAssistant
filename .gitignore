@@ -1,0 +1,7 @@
+home-assistant_v2.db
+*.log
+*.db-shm
+*.db-wal
+secrets.yaml
+*.key
+tts/
