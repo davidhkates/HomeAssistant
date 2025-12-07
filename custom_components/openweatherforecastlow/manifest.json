@@ -1,0 +1,10 @@
+{
+  "domain": "openweather_forecast_low",
+  "name": "OpenWeather Custom",
+  "version": "1.0.0",
+  "documentation": "https://example.com",
+  "requirements": [],
+  "codeowners": ["@yourname"],
+  "iot_class": "cloud_polling",
+  "integration_type": "service"
+}
