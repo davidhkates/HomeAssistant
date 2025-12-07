@@ -3,12 +3,14 @@ import requests
 def get_min_low_temp(api_key, lat, lon):
     """Return the minimum forecast low temperature from the next 12 periods."""
 
-    url = "https://api.openweathermap.org/data/2.5/forecast"
+    #url = "https://api.openweathermap.org/data/2.5/forecast"
+    url = "https://api.openweathermap.org/data/3.0/onecall"
     params = {
         "lat": lat,
         "lon": lon,
-        "appid": api_key,
-        "units": "imperial"
+        "units": "imperial",
+        "exclue": "current,minutely,daily,alerts"
+        "appid": api_key
     }
 
     response = requests.get(url, params=params)
