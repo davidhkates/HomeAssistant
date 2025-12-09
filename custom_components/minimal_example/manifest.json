@@ -1,0 +1,11 @@
+{
+  "domain": "minimal_example",
+  "name": "Minimal Example Component",
+  "version": "1.0.0",
+  "documentation": "https://example.com",
+  "requirements": [],
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "dependencies": [],
+  "codeowners": []
+}

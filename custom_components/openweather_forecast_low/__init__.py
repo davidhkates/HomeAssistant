@@ -1,21 +1,22 @@
 from __future__ import annotations
 from homeassistant.core import HomeAssistant
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.helpers.typing import ConfigType
-from .const import DOMAIN
 
-async def async_setup(hass: HomeAssistant, config: ConfigType):
-    """YAML setup not supported."""
+DOMAIN = "openweather_forecast_low"
+
+async def async_setup(hass: HomeAssistant, config: dict):
+    """Set up integration via YAML (not used here)."""
     return True
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
-    """Set up integration from a config entry."""
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(entry, "sensor")
-    )
+async def async_setup_entry(hass: HomeAssistant, entry):
+    """Set up integration via Config Flow."""
+    hass.data.setdefault(DOMAIN, {})
+    hass.data[DOMAIN][entry.entry_id] = {
+        "city": entry.data["city"],
+        "api_key": entry.data["api_key"],
+    }
     return True
 
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
-    """Unload integration."""
-    await hass.config_entries.async_forward_entry_unload(entry, "sensor")
+async def async_unload_entry(hass: HomeAssistant, entry):
+    """Unload a config entry."""
+    hass.data[DOMAIN].pop(entry.entry_id, None)
     return True

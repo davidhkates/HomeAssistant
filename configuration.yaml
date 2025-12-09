@@ -21,16 +21,13 @@ http:
 homeassistant:
   external_url: "https://niwotha.katesconsult.com"
 
-# Include definitiations for various entities
+# Include definitions for various entities
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
 # Define input numbers
 input_number: !include input_number.yaml
-
-# Define mock shades (covers)
-#cover: !include covers.yaml
 
 # Define sensors for displaying time, weather and vehicle information
 template: !include templates.yaml
@@ -39,6 +36,14 @@ template: !include templates.yaml
 rest_command: !include wallbox_apis.yaml
 sql: !include wallbox_sql.yaml
 
+# Initialize logger to debug custom components
+logger:
+  default: info
+  logs:
+    custom_components.openweather_forecast_low: debug
+    #custom_components.openweather_forecast_low.sensor: debug
+    #custom_components.openweather_forecast_low.__init__: debug
+    #custom_components.openweather_forecast_low.coordinator: debug    
 
 # Clean up database (home-assistant_v2.db)
 recorder:

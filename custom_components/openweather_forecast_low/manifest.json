@@ -3,8 +3,9 @@
   "name": "OpenWeather Forecast Low",
   "version": "1.0.0",
   "documentation": "https://example.com",
-  "requirements": [],
-  "codeowners": ["David Kates"],
+  "codeowners": ["@David-Kates"],
   "iot_class": "cloud_polling",
-  "integration_type": "service"
+  "integration_type": "service",
+  "config_flow": true,
+  "requirements": []
 }

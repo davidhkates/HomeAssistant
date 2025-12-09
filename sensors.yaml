@@ -22,45 +22,18 @@
 - name: "Model 3 Charging Complete"
   unique_id: tesla_model_3_charging_complete
   state: >
-    {{ states('sensor.model_3_time_to_full_charge')
-       | as_datetime
-       | as_local
-       | as_timestamp
-       | timestamp_custom('%I:%M %p')         
-    }}
+    {% set charge_time = states('sensor.model_3_time_to_full_charge') | as_datetime %}
+    {% if charge_time %}
+      {{ charge_time | as_local | as_timestamp | timestamp_custom('%I:%M %p') }}
+    {% else %}
+      unknown
+    {% endif %}
 
-# Weather forecast of today's low
-- name: "Weather Forecast Today's Low"
-  unique_id: weather_forecast_todays_low
-  unit_of_measurement: "°F"
-  #state: "{{ daily_forecast['weather.home'].forecast[0].templow }}"
-  #value_template: >
+# Weather forecast overnight low
+- name: "OpenWeather Overnight Low"
+  unique_id: weather_forecast_overnight_low
+  #state: states('weather_forecast_minimum_low')
+  #state: "{{ states('weather_forecast_minimum_low') }}"
   state: >
-    {% set forecast = state_attr('weather.openweathermap', 'forecast') %}
-    {% if forecast %}
-      {% set today = now().date() %}
-      {% for f in forecast %}
-        {% if f.datetime.date() == today %}
-          {{ f.templow }}
-        {% endif %}
-      {% endfor %}
-    {% else %}
-      unavailable
-    {% endif %}
-        
-# Weather forecast of tomorrow's low
-- name: "Weather Forecast Tomorrow's Low"
-  unique_id: weather_forecast_tomorrows_low
+    {{ states('weather_forecast_minimum_low') | float(0) }}
   unit_of_measurement: "°F"
-  state: >
-    {% set forecast = state_attr('weather.openweathermap', 'forecast') %}
-    {% if forecast %}
-      {% set tomorrow = (now() + timedelta(days=1)).date() %}
-      {% for f in forecast %}
-        {% if f.datetime.date() == tomorrow %}
-          {{ f.templow }}
-        {% endif %}
-      {% endfor %}
-    {% else %}
-      unavailable
-    {% endif %}
