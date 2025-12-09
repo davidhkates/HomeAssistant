@@ -1,0 +1,12 @@
+{
+  "domain": "openweather_forecasts",
+  "name": "OpenWeather Forecasts",
+  "version": "1.0.0",
+  "documentation": "https://openweathermap.org/api/one-call-3",
+  "requirements": ["aiohttp"],
+  "dependencies": [],
+  "codeowners": ["@ydavidhkates"],
+  "config_flow": true,
+  "iot_class": "cloud_polling",
+  "homeassistant": "2023.11.0"
+}

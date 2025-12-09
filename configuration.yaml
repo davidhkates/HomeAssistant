@@ -40,10 +40,7 @@ sql: !include wallbox_sql.yaml
 logger:
   default: info
   logs:
-    custom_components.openweather_forecast_low: debug
-    #custom_components.openweather_forecast_low.sensor: debug
-    #custom_components.openweather_forecast_low.__init__: debug
-    #custom_components.openweather_forecast_low.coordinator: debug    
+    custom_components.openweather_forecasts: debug
 
 # Clean up database (home-assistant_v2.db)
 recorder:
