@@ -1,7 +1,5 @@
-home-assistant_v2.db
 *.log
-*.db-shm
-*.db-wal
+home-assistant_v2.db*
 secrets.yaml
 *.key
 tts/
