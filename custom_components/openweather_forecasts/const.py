@@ -8,16 +8,16 @@ DEFAULT_NAME = "OpenWeather Forecasts"
 UPDATE_INTERVAL = 3600  # seconds
 
 SENSOR_TYPES = {
-    "overnight_low": {
-        "name": "Overnight Low",
+    "temp": {
+        "name": "Temperature",
         "unit": "°F",
     },
-    "overnight_high": {
-        "name": "Overnight High",
+    "feels_like": {
+        "name": "Feels Like",
         "unit": "°F",
     },
     "humidity": {
         "name": "Humidity",
         "unit": "%",
-    },
+    }
 }
