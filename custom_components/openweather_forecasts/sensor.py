@@ -70,3 +70,7 @@ class OpenWeatherForecastSensor(CoordinatorEntity, SensorEntity):
     def available(self):
         """Entity availability."""
         return self.coordinator.last_update_success
+
+    @property
+    def entity_picture(self):
+        return f"/local/forecast.png"
